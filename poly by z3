@@ -1,0 +1,29 @@
+function y=definecode(path)
+% clear;
+% clc;
+% push和pop就是进栈出栈的含义
+x=path;         %path='E:\08_work\IDCB\Z3';
+filepath=[x,'\','Z3code'];     %‘逗号’用来连接两个字符串
+cd(path);    
+fid=fopen(filepath,'w');
+fprintf(fid,'%s\n','(declare-const x Real)');
+fprintf(fid,'%s\n','(declare-const y Real)');
+fprintf(fid,'%s\n','(declare-const z Real)');
+fprintf(fid,'%s\n','(declare-const k Real)');
+fprintf(fid,'%s\n','(declare-const j Real)');
+fprintf(fid,'%s\n','(declare-const m Real)');
+fprintf(fid,'%s\n','(declare-const p Real)');
+fprintf(fid,'%s\n','(assert (and (> p 0) (< p 10)))');
+fprintf(fid,'%s\n','(assert (and (> x -2) (< x 2)))');
+fprintf(fid,'%s\n','(assert (and (> y -2) (< y 2)))');
+fprintf(fid,'%s\n','(assert (= (+ (* x x) (* y y)) k))');
+fprintf(fid,'%s\n','(assert (= (* x y) j))');
+fprintf(fid,'%s\n','(assert (= (/ (* (* (* x x) x) 20) (+ (* y y) 1)) m))');
+fprintf(fid,'%s\n','(assert (= (+ (+ k j) m) z))');
+fprintf(fid,'%s\n','(assert (> z 1)) ');
+fprintf(fid,'%s\n','(assert (< z 3 ))');
+fprintf(fid,'%s\n','(assert (< (* p 0.5) 3 ))');
+fprintf(fid,'%s\n','(check-sat)');
+fprintf(fid,'%s\n','(get-model)');
+y=1;
+return
